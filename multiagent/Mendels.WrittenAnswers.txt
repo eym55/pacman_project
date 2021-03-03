@@ -1,0 +1,20 @@
+Write Up
+
+Q1. Give the intuition behind your reflex agent. Why did it work? What did you try that didn’t work?
+
+I spent a lot of time playing with the settings to balance rewarding food and avoiding ghosts in the beginning. I knew that getting away from ghosts and close to food were good but I originally was just looking at distances of foods. Then I realized that there was no reward for actually eating so I had to add a factor of the count of food and that wmade it far more efficient. The reason there is such a high power for the food count is so that states with 1 less food are substantially more valuable than states with more food. I was also orioginally tracking ghosts no matter where they were but I realized that they only matter if they are close and even then, mostly when they are very close which is why my function is exponentially smaller when it's very close to a ghost. python pacman.py -p MinimaxAgent -l minimaxClassic -a depth=4
+
+Q2. What happens as you increase the search depth for your minimax agent? Why do you think this is?
+
+Increasing the search depth makes the game run much much slower. There are significant discrete pauses between each movement. This is because the computer spends a lot more time and power thinking about what the best move is. Like in chess, the more combinations you look at, the harder it is to do with limited computing resources and time. Each depth increase adds a depth increase of 3 which exponentially increases the runtime and amount of nodes to search.
+
+Q3. Compare the stright minimax agent to an Alpha-Beta pruning agent. How much better or worse is it? Why?
+I ran minimax and alpha beta on the same maop with a fixed random seed. In that comparison, I found that alpha beta had a score of 1677 vs 37 for minimax. I found this really confusing because the values for each max node should be the same as alpha beta does not prune out impactful choices. I also ran each 5 times to compare them with random seeds and found that minimax took 40 seconds and had an average score of -287 with 5 losses while alpha beta took 39 seconds with an average score of -400. Overall there is no significant difference between the two agents in my implementation.
+
+Q4. Give some intuition as to why (or why not) your expectimax agent is working better than the other agents.
+
+Based on the results it seems than the ghosts do not actually behave with perfect strategy. They are not as aggressive as a smart competitor would be and often don't make the best possible move. Therefore, in the models where it is assumed they do that, the pacman is unnecesarily cautious and gives up points as a result. Like we mentioned in class if we use minimax against an imperfect agent, we give up a lot of potential winnings which is what is happening here. It is also likely that, while it's not an exact uniform distribution, the ghosts are somewhat random and therefore expectimax is better suited.
+
+Q5. Give the intuition behind your evaluation function. Why did it work? What did you try that did not work?
+
+When I did my evaluation function, my reflex agent was still not working so I tried a new strategy that involved focusing on pellets and prioritizing eating pellets when ghosts were less than 5 spaces away. I thought that training the pacman to be aggressive in pellet hunting would be good both offensively and defensively however, I struggled to successfully implement it. I then tried remaking my reflex agent with a few tweaks and found that the same strategy worked. Again, the key is decreasing the function exponentially when there are ghosts very close by. 

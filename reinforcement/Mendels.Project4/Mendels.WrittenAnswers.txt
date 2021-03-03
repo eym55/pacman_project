@@ -1,0 +1,19 @@
+Eli Mendels
+Project 4 Written Answers
+5/1/20
+
+2. I set the noise to 0 so that the agent could cross the bridge with no chance of falling to it's death. This eliminated the risk so that the agent could go for the goal. Setting the discount to high a number greater than 1 might have also worked as it would have rewarded a longer route. There would be the risk that it would never finish though so it may not have worked.
+
+3.a. I set the noise to 0 so there's no risk and the answer discount to a very low number so that the closer goal had a high value.
+b. This one required setting the risk to a number greater than 0 so that the agent would avoid the cliffs due to the chance of falling and again a small discount so it will prioritize closer goals.
+c. Setting noise to 0 again and this time making the discount .99 so that there's very little incentive to finding an earlier goal
+d. I combined my strategies of adding noise so it avoids the cliff, and a larger discount so it is not penalized for longer solutions.
+e. I set the discount to 0 so that every state had a value of 0 and since the default tie breaker was west, it never terminated. A better solution may be to make the stay alive reward greater than any goals and turning the noise to 0.
+
+6. I tried the agent with k = 1, 5, 10. The more iterations, the more comprehensive and filled in the board becomes. It also ran significantly faster at later episodes than the first few because more qvalues were known and there was less time spent around the origin where all the qvalues were 0. In early episodes, the agent spent a lot of time within 1-3 blocks of the start but later episodes it moved much more quickly to the goal states. Also, after one episode, there was only one q-value, at an exit, but with 5 there were about 4 and there were 12 with 10. With 25 iterations, there were more qvalues but the actual results were not that different and there was not as much useful new development in each episode. 
+
+7. I found that increasing the learning rate made the crawler get to a velocity of around .6-.8 much more quickly than before but with no other changes it plateued there for a while. Once it had learner, lowering the epsilon caused it to move much faster but with a low epsilon in the beginning it took a very long time to make any progress. Lowering the discount got the crawler stuck in a lot of loops where it made some forwards progress then some backwards progress. Once it had started moving quickly, lowering the discount crippled it, it had a lot of trouble moving with low discount. 
+
+8. I found that it was not possible to solve this problem. Even with learning set to the maximum and randomness set very low, it still took too many test cases before the agent figured out the optimal path. Adding more randomness did not help getting the solution because the optimal path was short and very easy to find. 
+
+9. Pacman was doing very well and won every test game after 2000 training ones on the small grid but did very poorly on the medium grid, losing every game. I found that when I increased epsilon pacman did significantly worse. Increasing the alpha meant that even though it improved a lot in the beginning, it did not get as good by the end and would go from positive training scores to negative training scores even at 1500,1600 trials. In the end though, pacman won all of its games. 
